@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Ordering.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Ordering.Domain.Entities;
 
-namespace Ordering.Infraestructure.Persistence
+namespace Ordering.Infrastructure.Persistence
 {
     public class OrderContextSeed
     {

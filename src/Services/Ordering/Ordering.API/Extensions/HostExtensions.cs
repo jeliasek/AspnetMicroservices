@@ -39,6 +39,7 @@ namespace Ordering.API.Extensions
             }
             return host;
         }
+
         private static void InvokeSeeder<TContext>(Action<TContext, IServiceProvider> seeder,
                                                     TContext context,
                                                     IServiceProvider services)

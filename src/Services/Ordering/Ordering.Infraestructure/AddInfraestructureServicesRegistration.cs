@@ -10,8 +10,8 @@ using Ordering.Application.Contracts.Infraestructure;
 using Ordering.Application.Contracts.Models;
 using Ordering.Application.Contracts.Persistence;
 using Ordering.Infraestructure.Mail;
-using Ordering.Infraestructure.Persistence;
 using Ordering.Infraestructure.Repositories;
+using Ordering.Infrastructure.Persistence;
 
 namespace Ordering.Infraestructure
 {

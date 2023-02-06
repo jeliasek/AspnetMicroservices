@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Ordering.Application.Contracts.Persistence;
 using Ordering.Domain.Common;
-using Ordering.Infraestructure.Persistence;
+using Ordering.Infrastructure.Persistence;
 
 namespace Ordering.Infraestructure.Repositories
 {

@@ -1,8 +1,12 @@
 using Ordering.API.Extensions;
 using Ordering.Application;
 using Ordering.Infraestructure;
-using Ordering.Infraestructure.Persistence;
+using Ordering.Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
+using MassTransit;
+using EventBus.Messages.Common;
+using Ordering.API.EventBusConsumer;
+using Microsoft.AspNetCore.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +19,27 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfraestructureServices(builder.Configuration);
+
+
+
+// MassTransit-RabbitMQ Configuration
+builder.Services.AddMassTransit(config => {
+
+    config.AddConsumer<BasketCheckoutConsumer>();
+
+    config.UsingRabbitMq((ctx, cfg) => {
+        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+
+        cfg.ReceiveEndpoint(EventBusConstants.BasketCheckoutQueue, c =>
+        {
+            c.ConfigureConsumer<BasketCheckoutConsumer>(ctx);
+        });
+    });
+});
+//builder.Services.AddMassTransitHostedService();
+// General Configuration
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<BasketCheckoutConsumer>();
 
 var app = builder.Build();
 app.MigrateDatabase<OrderContext>((context, services) =>
