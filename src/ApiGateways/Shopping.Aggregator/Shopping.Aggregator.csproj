@@ -15,6 +15,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Common.Logging\Common.Logging.csproj" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/avro-avsc.json" /></VisualStudio></ProjectExtensions>
 
 </Project>
